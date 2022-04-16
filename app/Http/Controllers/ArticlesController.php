@@ -145,11 +145,13 @@ class ArticlesController extends Controller
         $categoryArray = [];
 
         foreach ($categories as $category) {
-            $articles = Articles::where('category_id', $category->id)->get();
+            $articles = Articles::where('category_id', $category->id)->get();            
+
+            $category['articulos'] = $articles;
+
             $categoryArray[] = [
-                'categoria' => $category,
-                'articulos' => $articles,
-            ];
+                'categoria' => $category                
+            ];            
         }
 
         return response()->json($categoryArray);
